@@ -1,0 +1,30 @@
+{
+  "tasks": [
+    {
+      "id": "aijcoV6PBNE",
+      "title": "Football",
+      "description": "Play football with friends.",
+      "dueDate": "2026-09-18T15:45:00.000Z",
+      "location": {
+        "address": "Central Depot, 1 Industrial Way",
+        "latitude": 55.7558,
+        "longitude": 37.6173
+      },
+      "attachments": [
+        {
+          "id": "att_mu74lphe_18ob9o_2",
+          "uri": "file:///data/user/0/com.salesautomators.fieldtasks/files/attachments/att_mu74lph9_8rya5y_1_20260918_183440.jpg",
+          "fileName": "20260918_183440.jpg",
+          "mimeType": "image/jpeg",
+          "size": 614217,
+          "createdAt": "2026-09-18T15:41:14.690Z"
+        }
+      ],
+      "status": "in_progress",
+      "createdAt": "2026-09-18T15:41:30.391Z",
+      "updatedAt": "2026-09-18T15:44:26.567Z",
+      "deleted": false
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

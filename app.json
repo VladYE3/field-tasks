@@ -1,0 +1,52 @@
+{
+  "expo": {
+    "name": "Field Tasks",
+    "slug": "field-tasks",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "scheme": "fieldtasks",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.salesautomators.fieldtasks"
+    },
+    "android": {
+      "package": "com.salesautomators.fieldtasks",
+      "versionCode": 1,
+      "permissions": [
+        "POST_NOTIFICATIONS",
+        "INTERNET",
+        "ACCESS_NETWORK_STATE",
+        "SCHEDULE_EXACT_ALARM"
+      ],
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-notifications",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "fef6857d-832d-4451-a0f7-1ccf1cdc152f"
+      }
+    },
+    "owner": "vladye5"
+  }
+}

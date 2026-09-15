@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQ3P3YtC9m6R6JwK0q3z7Vf9D8x1w5Q=" crossorigin="" />
+  <style>
+    html, body, #map {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #eef2f5;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    #map {
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script>
+    var leafletMap = L.map('map', { zoomControl: true });
+    var markersLayer = L.layerGroup().addTo(leafletMap);
+    var pendingTasks = [];
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(leafletMap);
+
+    function sendTaskSelection(taskId) {
+      if (window.ReactNativeWebView) {
+        window.ReactNativeWebView.postMessage(JSON.stringify({ type: 'select-task', taskId: taskId }));
+      }
+    }
+
+    function renderTasks(tasks) {
+      pendingTasks = Array.isArray(tasks) ? tasks : [];
+      markersLayer.clearLayers();
+      var validTasks = pendingTasks.filter(function (task) {
+        return Number.isFinite(Number(task.latitude)) && Number.isFinite(Number(task.longitude));
+      });
+      if (validTasks.length === 0) { return; }
+
+      var bounds = [];
+      validTasks.forEach(function (task) {
+        var latitude = Number(task.latitude);
+        var longitude = Number(task.longitude);
+        var marker = L.marker([latitude, longitude]).addTo(markersLayer);
+        marker.bindPopup('<strong>' + String(task.title || 'Task').replace(/[<>&\"']/g, '') + '</strong><br>' + String(task.address || '').replace(/[<>&\"']/g, ''));
+        marker.on('click', function () { sendTaskSelection(task.id); });
+        bounds.push([latitude, longitude]);
+      });
+      leafletMap.fitBounds(bounds, { padding: [24, 24], maxZoom: validTasks.length === 1 ? 14 : 16 });
+    }
+
+    window.setTasks = renderTasks;
+    window.addEventListener('resize', function () {
+      leafletMap.invalidateSize();
+      renderTasks(pendingTasks);
+    });
+    setTimeout(function () {
+      leafletMap.invalidateSize();
+      renderTasks(pendingTasks);
+    }, 250);
+  </script>
+</body>
+</html>

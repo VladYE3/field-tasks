@@ -1,0 +1,28 @@
+{
+  "tasks": [
+    {
+      "id": "seed_1",
+      "title": "Inspect rooftop antenna",
+      "description": "Check the mounting brackets and cable connectors on the main antenna.",
+      "dueDate": "2026-02-10T09:30:00.000Z",
+      "location": { "address": "Central Depot, 1 Industrial Way", "latitude": 55.7558, "longitude": 37.6173 },
+      "attachments": [],
+      "status": "new",
+      "createdAt": "2026-02-01T08:00:00.000Z",
+      "updatedAt": "2026-02-01T08:00:00.000Z",
+      "deleted": false
+    },
+    {
+      "id": "seed_2",
+      "title": "Replace pump valve",
+      "description": "Bring a replacement valve (part #V-220) and a full toolkit.",
+      "dueDate": "2026-02-11T14:00:00.000Z",
+      "location": { "address": "Riverside Pump Station, 4 Embankment St", "latitude": 55.74, "longitude": 37.62 },
+      "attachments": [],
+      "status": "in_progress",
+      "createdAt": "2026-02-02T10:00:00.000Z",
+      "updatedAt": "2026-02-03T07:30:00.000Z",
+      "deleted": false
+    }
+  ]
+}
